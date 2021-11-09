@@ -8,7 +8,7 @@ class MovieAdmin(admin.ModelAdmin):
     Moreover, the change list should be searchable by movie and 
     original title.
     '''
-    list_display = ("movie_title","realesed","runtime")
+    list_display = ("movie_title","released","runtime")
     
 
 class GenreAdmin(admin.ModelAdmin): 
@@ -17,7 +17,7 @@ class GenreAdmin(admin.ModelAdmin):
     the list itself should show the name of the genre
     '''
     search_fields = ("name",)
-    list_display = ("name")
+    list_display = ("name",)
 
 class PersonAdmin(admin.ModelAdmin):
     '''
@@ -25,7 +25,7 @@ class PersonAdmin(admin.ModelAdmin):
     year_of_birth, year_of_death and gender. 
     Add a filter in the change list to add gender
     '''
-    list_display = ("gender")
+    list_display = ("gender",)
 
 # Now register the your admin classes with Django - otherwise 
 # you want see them in your admin application:
