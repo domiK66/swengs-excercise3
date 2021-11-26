@@ -48,7 +48,7 @@ def test_filter_movie_containing_blade():
     assert movies_containing_blade.count() == 2
 
 def test_genre_to_str():        
-    for movie_title,released,runtime in .movies:
+    for movie_title,released,runtime in movies:
         assert str(models.Movie.objects.get(movie_title=movie_title)) == movie_title 
 
 def test_update_role_type():
