@@ -3,41 +3,41 @@ from . import models
 def create_genre():
     # Create a new model instance for model "Genre" with name "Comedy"
     # YOUR CODE HERE:
-    genre = models.Genre.objects.create(name="Comedy")
+    genre = models.Genre.objects.create(name = "Comedy")
     # /ENDYOURCODE
     return genre
 
 def delete_genre():
     # Delete Genre instance with name "Action"
     # YOUR CODE HERE: 
-    genre = models.Genre.objects.filter(name="Action").delete()
+    genre = models.Genre.objects.filter(name = "Action").delete()
     # /ENDYOURCODE
 
 def filter_movie_by_year():
     # Filter all movies, that were released after 2000 (store results of query in variable movies_2000)
     # YOUR CODE HERE:
-    movies_2000 = models.Movie.objects.filter(released__gt="2000-01-01")
+    movies_2000 = models.Movie.objects.filter(released__gt = "2000-01-01")
     # /ENDYOURCODE        
     return movies_2000
 
 def filter_movie_by_runtime():
     # Filter all movies with a runtime < 100
     # YOUR CODE HERE:
-    movies_90 = models.Movie.objects.filter(runtime__lte=100)
+    movies_90 = models.Movie.objects.filter(runtime__lte = 100)
     # /ENDYOURCODE
     return movies_90
 
 def filter_movie_starting_with_b():
     # Filter all movies that start with letter B
     # YOUR CODE HERE:
-    movies_with_b = models.Movie.objects.filter(movie_title__startswith="B")
+    movies_with_b = models.Movie.objects.filter(movie_title__startswith = "B")
     # /ENDYOURCODE
     return movies_with_b
 
 def filter_movie_containing_blade():
     # Filter all movies that contain "Blade" in its title
     # YOUR CODE HERE:
-    movies_containing_blade = models.Movie.objects.filter(movie_title__contains="Blade")
+    movies_containing_blade = models.Movie.objects.filter(movie_title__contains = "Blade")
     # /ENDYOURCODE
     return movies_containing_blade
      
@@ -49,7 +49,7 @@ def update_role_type():
     # Load the model instance "Actor" of model "RoleType"
     # and update the name of the RoleType to "Actor/Actress"
     # YOUR CODE HERE:
-    actor = models.RoleType.objects.get(name="Actor")
+    actor = models.RoleType.objects.get(name = "Actor")
     actor.name="Actor/Actress"
     actor.save()
     # /ENDYOURCODE
@@ -60,5 +60,5 @@ def get_or_create_role_type():
     # already exists. Modify the "create" method accordingly, so this 
     # test can pass
     # MODIFY CODE HERE
-    models.RoleType.objects.get_or_create(name="Producer")
+    models.RoleType.objects.get_or_create(name = "Producer")
     # /ENDYOURCODE

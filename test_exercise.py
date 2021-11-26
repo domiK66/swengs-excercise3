@@ -55,13 +55,13 @@ class TestYamodModel:
 
     def test_genre_to_str(self, setup):        
         for movie_title,released,runtime in movies:
-            assert str(models.Movie.objects.get(movie_title=movie_title)) == movie_title 
+            assert str(models.Movie.objects.get(movie_title = movie_title)) == movie_title 
                 
     def test_update_role_type(self, setup):
         exercise.update_role_type()
-        assert models.RoleType.objects.filter(name="Actor/Actress").count() == 1
+        assert models.RoleType.objects.filter(name = "Actor/Actress").count() == 1
 
     def test_get_or_create_role_type(self, setup):
         exercise.get_or_create_role_type()
         assert models.RoleType.objects.count() == 3
-        assert models.RoleType.objects.filter(name="Producer").count() == 1
+        assert models.RoleType.objects.filter(name = "Producer").count() == 1
