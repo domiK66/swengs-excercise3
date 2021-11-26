@@ -24,39 +24,39 @@ class TestBase:
                                              released=released,
                                              original_title=movie_title,
                                              runtime=runtime) for movie_title,released,runtime in movies]
-        def test_create_genre():
+        def test_create_genre(self):
             genre = exercise.create_genre()
             assert genre.name == "Comedy"
 
-        def test_delete_genre():
+        def test_delete_genre(self):
             exercise.delete_genre()
             assert models.Genre.objects.count() == 2
 
-        def test_filter_movie_by_year():
+        def test_filter_movie_by_year(self):
             movies_2000 = exercise.filter_movie_by_year()  
             assert movies_2000.count() == 3
                 
-        def test_filter_movie_by_runtime():
+        def test_filter_movie_by_runtime(self):
             movies_90 = exercise.filter_movie_by_runtime()
             assert movies_90.count() == 3
 
-        def test_filter_movie_starting_with_b():
+        def test_filter_movie_starting_with_b(self):
             movies_with_b = exercise.filter_movie_starting_with_b()
             assert movies_with_b.count() == 2
 
-        def test_filter_movie_containing_blade():
+        def test_filter_movie_containing_blade(self):
             movies_containing_blade = exercise.filter_movie_containing_blade()
             assert movies_containing_blade.count() == 2
 
-        def test_genre_to_str():        
+        def test_genre_to_str(self):        
             for movie_title,released,runtime in movies:
                 assert str(models.Movie.objects.get(movie_title=movie_title)) == movie_title 
                 
-        def test_update_role_type():
+        def test_update_role_type(self):
             exercise.update_role_type()
             assert models.RoleType.objects.filter(name="Actor/Actress").count() == 1
 
-        def test_get_or_create_role_type():
+        def test_get_or_create_role_type(self):
             exercise.get_or_create_role_type()
             assert models.RoleType.objects.count() == 3
             assert models.RoleType.objects.filter(name="Producer").count() == 1
