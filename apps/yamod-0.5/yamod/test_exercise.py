@@ -53,7 +53,7 @@ def test_genre_to_str():
 
 def test_update_role_type():
     exercise.update_role_type()
-    assert models.RoleType.objects.filter(name="Actor/Actress").count() == 1)
+    assert models.RoleType.objects.filter(name="Actor/Actress").count() == 1
 
 def test_get_or_create_role_type():
     exercise.get_or_create_role_type()
