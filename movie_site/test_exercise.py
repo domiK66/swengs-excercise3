@@ -7,7 +7,7 @@ from yamod import exercise
 
 
 @pytest.mark.django_db
-class BaseTests:
+class TestBase:
         def setup_module():
                 genres = ["Action","Horror","Scifi"]
                 movies = [
