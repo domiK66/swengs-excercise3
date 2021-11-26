@@ -6,6 +6,7 @@ from yamod import models
 from yamod import exercise
 
 @pytest.fixture
+@pytest.mark.django_db
 def setup():
     genres = ["Action","Horror","Scifi"]
     movies = [
@@ -16,11 +17,9 @@ def setup():
         ("Rushmoore", datetime.date(year=1998,month=9,day=17),95)
         ]
     # Setup database
-    @pytest.mark.django_db
+
     [models.Genre.objects.create(name=name) for name in ["Action","Horror","Scifi"]]
-    @pytest.mark.django_db
     [models.RoleType.objects.create(name=name) for name in ["Actor","Producer","Director"]]
-    @pytest.mark.django_db
     [models.Movie.objects.create(movie_title=movie_title,
                                 released=released,
                                 original_title=movie_title,
