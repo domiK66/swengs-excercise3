@@ -8,7 +8,7 @@ from yamod import exercise
 
 @pytest.mark.django_db
 class TestBase:
-        def setup_module():
+        def setup_class():
                 genres = ["Action","Horror","Scifi"]
                 movies = [
                     ("Blade Runner", datetime.date(year=1982,month=6,day=25),100),
