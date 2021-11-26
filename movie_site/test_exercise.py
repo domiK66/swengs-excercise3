@@ -6,6 +6,7 @@ from yamod import models
 from yamod import exercise
 
 
+@pytest.mark.django_db
 def setup_module():
         genres = ["Action","Horror","Scifi"]
         movies = [
@@ -22,39 +23,47 @@ def setup_module():
                                      released=released,
                                      original_title=movie_title,
                                      runtime=runtime) for movie_title,released,runtime in movies]
-
+@pytest.mark.django_db
 def test_create_genre():
     genre = exercise.create_genre()
     assert genre.name == "Comedy"
-
+        
+@pytest.mark.django_db
 def test_delete_genre():
     exercise.delete_genre()
     assert models.Genre.objects.count() == 2
-
+        
+@pytest.mark.django_db
 def test_filter_movie_by_year():
     movies_2000 = exercise.filter_movie_by_year()  
     assert movies_2000.count() == 3
-
+        
+@pytest.mark.django_db
 def test_filter_movie_by_runtime():
     movies_90 = exercise.filter_movie_by_runtime()
     assert movies_90.count() == 3
-
+        
+@pytest.mark.django_db
 def test_filter_movie_starting_with_b():
     movies_with_b = exercise.filter_movie_starting_with_b()
     assert movies_with_b.count() == 2
-
+        
+@pytest.mark.django_db
 def test_filter_movie_containing_blade():
     movies_containing_blade = exercise.filter_movie_containing_blade()
     assert movies_containing_blade.count() == 2
-
+        
+@pytest.mark.django_db
 def test_genre_to_str():        
     for movie_title,released,runtime in movies:
         assert str(models.Movie.objects.get(movie_title=movie_title)) == movie_title 
 
+@pytest.mark.django_db
 def test_update_role_type():
     exercise.update_role_type()
     assert models.RoleType.objects.filter(name="Actor/Actress").count() == 1
-
+        
+@pytest.mark.django_db
 def test_get_or_create_role_type():
     exercise.get_or_create_role_type()
     assert models.RoleType.objects.count() == 3
