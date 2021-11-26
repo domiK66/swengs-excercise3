@@ -6,6 +6,7 @@ setup.py
 yamod/__init__.py
 yamod/admin.py
 yamod/apps.py
+yamod/exercises.py
 yamod/models.py
 yamod/tests.py
 yamod/views.py

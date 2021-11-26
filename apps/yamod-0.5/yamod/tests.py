@@ -1,12 +1,12 @@
 import datetime
 
 from django.test import TestCase
+
 from . import models
-from yamod.models import Genre, Movie, RoleType
+from . import exercise
 
+class YamodBaseTest(TestCase):
 
-class YamodModelTest(TestCase):
-    
     def setUp(self):
         self.genres=["Action","Horror","Scifi"]
         self.movies = [
@@ -24,47 +24,30 @@ class YamodModelTest(TestCase):
                                      original_title=movie_title,
                                      runtime=runtime) for movie_title,released,runtime in self.movies]
 
+class YamodModelTest(YamodBaseTest):
 
-    
     def test_create_genre(self):
-        # Create a new model instance for model "Genre" with name "Comedy"
-        # YOUR CODE HERE:
-        genre = Genre.objects.create(name="Comedy")
-        # /ENDYOURCODE
+        genre = exercise.create_genre()
         self.assertEqual(genre.name,"Comedy")
 
     def test_delete_genre(self):
-        # YOUR CODE HERE: Delete Genre instance with name "Action"
-        Genre.objects.filter(name="Action").delete()
-        # /ENDYOURCODE
+        exercise.delete_genre()
         self.assertEqual(models.Genre.objects.count(),2)
 
     def test_filter_movie_by_year(self):
-        # Filter all movies, that were released after 2000 (store results of query in variable movies_2000)
-        # YOUR CODE HERE:
-        movies_2000 = Movie.objects.filter(released__gt="2000-01-01")
-        # /ENDYOURCODE        
+        movies_2000 = exercise.filter_movie_by_year()  
         self.assertEqual(movies_2000.count(),3)
 
     def test_filter_movie_by_runtime(self):
-        # Filter all movies with a runtime < 100
-        # YOUR CODE HERE:
-        movies_90 = Movie.objects.filter(runtime__lte=100)
-        # /ENDYOURCODE
+        movies_90 = exercise.filter_movie_by_runtime()
         self.assertEqual(movies_90.count(),3)
 
     def test_filter_movie_starting_with_b(self):
-        # Filter all movies that start with letter B
-        # YOUR CODE HERE:
-        movies_with_b = Movie.objects.filter(movie_title__startswith="B")
-        # /ENDYOURCODE
+        movies_with_b = exercise.filter_movie_starting_with_b()
         self.assertEqual(movies_with_b.count(),2)
 
     def test_filter_movie_containing_blade(self):
-        # Filter all movies that contain "Blade" in its title
-        # YOUR CODE HERE:
-        movies_containing_blade = Movie.objects.filter(movie_title__contains="Blade")
-        # /ENDYOURCODE
+        movies_containing_blade = exercise.filter_movie_containing_blade()
         self.assertEqual(movies_containing_blade.count(),2)
 
     def test_genre_to_str(self):        
@@ -74,23 +57,11 @@ class YamodModelTest(TestCase):
         for movie_title,released,runtime in self.movies:
             self.assertEqual(str(models.Movie.objects.get(movie_title=movie_title)),movie_title)
 
-
     def test_update_role_type(self):
-        # Load the model instance "Actor" of model "RoleType"
-        # and update the name of the RoleType to "Actor/Actress"
-        # YOUR CODE HERE:
-        actor = RoleType.objects.get(name="Actor")
-        actor.name="Actor/Actress"
-        actor.save()
-        # /ENDYOURCODE
+        exercise.update_role_type()
         self.assertEqual(models.RoleType.objects.filter(name="Actor/Actress").count(),1)
 
     def test_get_or_create_role_type(self):
-        # The following call results in an error, as a role type "Producer"
-        # already exists. Modify the "create" method accordingly, so this 
-        # test can pass
-        # MODIFY CODE HERE
-        models.RoleType.objects.get_or_create(name="Producer")
-        # /ENDYOURCODE
+        exercise.get_or_create_role_type()
         self.assertEqual(models.RoleType.objects.count(),3)
         self.assertEqual(models.RoleType.objects.filter(name="Producer").count(),1)
