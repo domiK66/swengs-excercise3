@@ -2,8 +2,8 @@ import datetime
 
 import pytest
 
-from . import models
-from . import exercise
+from yamod import models
+from yamod import exercise
 
 
 def setup_module():
